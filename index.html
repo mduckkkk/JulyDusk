@@ -57,9 +57,9 @@
             }
         })();
     </script>
-</div><div id="keyboardContainer" class="keyboard-container"><div class="keyboard"><img id="passwordImage" src="" alt="Password Image" style="width: 8rem; height: 10rem; border: 0.125rem dashed #ff4d6d; border-radius: 0.3125rem; object-fit: cover;"><div class="keypad"><button class="key" data-value="1">1</button><button class="key" data-value="2">2</button><button class="key" data-value="3">3</button><button class="key" data-value="4">4</button><button class="key" data-value="5">5</button><button class="key" data-value="6">6</button><button class="key" data-value="7">7</button><button class="key" data-value="8">8</button><button class="key" data-value="9">9</button><button class="key" data-value="*">X</button><button class="key" data-value="0">0</button><button class="key" data-value="#">↵</button></div></div><input type="text" id="passwordInput" value="Enter our password" class="button" readonly></div><div id="counterContainer" class="counter-container"><div class="counter"><img id="counterImage" src="" alt="Counter Image" style="width: 10rem; height: 8rem; margin-bottom: 1rem; border-radius: 0.3125rem; object-fit: cover;"><div class="counter-text">Page 2 chua sua xong</div><div id="timer" class="timer">0 : 00 : 00 : 00</div><div class="labels" id="dateLabel">Đang tải ngày...</div></div><button id="memoryButton" class="footer">Click de sang trang khac</button><div class="hearts">♥ ♥ ♥ ♥</div></div><div id="memoriesContainer" class="memories-container"><div class="memories-box"><input type="text" id="memoriesInput" value="Album (nhan vao anh)" class="button" readonly><div class="memories-images" id="memoryImages"></div><div class="memories-text">Loi khen...</div></div><div><button id="luckyButton" class="button">Loi cam on (click -> next)</button></div></div><div id="finalContainer" class="final-container">
+</div><div id="keyboardContainer" class="keyboard-container"><div class="keyboard"><img id="passwordImage" src="" alt="Password Image" style="width: 8rem; height: 10rem; border: 0.125rem dashed #ff4d6d; border-radius: 0.3125rem; object-fit: cover;"><div class="keypad"><button class="key" data-value="1">1</button><button class="key" data-value="2">2</button><button class="key" data-value="3">3</button><button class="key" data-value="4">4</button><button class="key" data-value="5">5</button><button class="key" data-value="6">6</button><button class="key" data-value="7">7</button><button class="key" data-value="8">8</button><button class="key" data-value="9">9</button><button class="key" data-value="*">X</button><button class="key" data-value="0">0</button><button class="key" data-value="#">↵</button></div></div><input type="text" id="passwordInput" value="Enter our password" class="button" readonly></div><div id="counterContainer" class="counter-container"><div class="counter"><img id="counterImage" src="" alt="Counter Image" style="width: 10rem; height: 8rem; margin-bottom: 1rem; border-radius: 0.3125rem; object-fit: cover;"><div class="counter-text">Page 2 chua sua xong</div><div id="timer" class="timer">0 : 00 : 00 : 00</div><div class="labels" id="dateLabel">Đang tải ngày...</div></div><button id="memoryButton" class="footer">Click de sang trang khac</button><div class="hearts">♥ ♥ ♥ ♥</div></div><div id="memoriesContainer" class="memories-container"><div class="memories-box"><input type="text" id="memoriesInput" value="Album (nhan vao anh se lat lai)" class="button" readonly><div class="memories-images" id="memoryImages"></div><div class="memories-text">Loi khen...</div></div><div><button id="luckyButton" class="button">Loi cam on (click -> next)</button></div></div><div id="finalContainer" class="final-container">
     <div class="final-box">
-        <h2 class="final-title">La thu </h2>
+        <h2 class="final-title">La thu (nam sau buc anh)</h2>
         
         <p style="font-size: 0.9rem; color: #ffccd5; margin-bottom: 5px;">(Di chuột hoặc ngón tay để cào nhẹ lớp ảnh)</p>
 
@@ -71,9 +71,9 @@
             <canvas id="scratchCanvas"></canvas>
         </div>
 
-        <button id="loveButtonFinal" class="final-button">Click -> next</button>
+        <button id="loveButtonFinal" class="final-button">Click</button>
     </div>
-</div><div id="loveContainer" class="love-container"><div class="love-message">Click vao day de gui loi nhan... </div><div class="love-heart">♥</div></div><audio id="backgroundMusic" autoplay loop><source type="audio/mp3"> Trình duyệt của bạn không hỗ trợ âm thanh HTML5. </audio></div><div id="embed02"><style> * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Sử dụng Baloo 2 và fallback là sans-serif */ font-weight: bold; background-color: #ffffff; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 1rem; text-align: center; } .button, input[type="text"] { background-color: #ff4d6d; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 1.25rem; font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 2rem; /* Giảm kích thước font để phù hợp với Baloo 2 */ cursor: pointer; margin: 0.5rem 0; text-align: center; width: 100%; max-width: 20rem; } .button:hover, input[type="text"]:hover { background-color: #e63c5e; } input[type="text"] { cursor: default; background-color: #ff4d6d; color: white; padding: 0.8rem; border-radius: 1.25rem; font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.5rem; /* Giữ nguyên kích thước nhỏ hơn để phù hợp */ width: 100%; max-width: 20rem; margin-bottom: 1rem; } input[type="text"]:focus { outline: none; } .container, .keyboard-container, .counter-container, .memories-container, .final-container, .love-container { display: none; width: 100%; max-width: 25rem; text-align: center; } .active { display: flex; flex-direction: column; align-items: center; width: 100%; } .keyboard { background-color: #fff; border: 0.125rem solid #ff4d6d; border-radius: 0.625rem; padding: 1rem; display: flex; gap: 0.625rem; margin-bottom: 1rem; width: 100%; max-width: 20rem; } .display { width: 8rem; height: 10rem; border: 0.125rem dashed #ff4d6d; margin-right: 1.25rem; line-height: 10rem; font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.5rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ff4d6d; } .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.3125rem; } .key { background-color: #ff4d6d; color: white; border: none; border-radius: 0.3125rem; width: 3.125rem; height: 3.125rem; font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.5rem; /* Giảm kích thước để phù hợp với Baloo 2 */ cursor: pointer; } .key:hover { background-color: #e63c5e; } .counter, .memories-box, .final-box { margin-bottom: 1rem; width: 100%; max-width: 30rem; } .counter-text, .final-text { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.5rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ff4d6d; margin-bottom: 0.625rem; } .memories-text { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.5rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ffffff; margin: 0rem; } .timer { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 2.5rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ff4d6d; margin-bottom: 0.625rem; } .labels { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 0.875rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ff4d6d; } .footer, .memories-footer, .final-button { background-color: #ff4d6d; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 1.25rem; font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.25rem; /* Giữ nguyên kích thước để phù hợp */ cursor: pointer; width: 100%; max-width: 20rem; } .hearts { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.25rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ff4d6d; margin-top: 0.625rem; } .memories-box { background-color: #ff4d6d; padding: 1rem; border-radius: 0.625rem; width: 100%; max-width: 30rem; } /* --- CODE GIAO DIỆN POLAROID (MÀU HỒNG + TIM) --- */
+</div><div id="loveContainer" class="love-container"><div class="love-message">Viet loi nhan... </div><div class="love-heart">♥</div></div><audio id="backgroundMusic" autoplay loop><source type="audio/mp3"> Trình duyệt của bạn không hỗ trợ âm thanh HTML5. </audio></div><div id="embed02"><style> * { margin: 0; padding: 0; box-sizing: border-box; } body { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Sử dụng Baloo 2 và fallback là sans-serif */ font-weight: bold; background-color: #ffffff; min-height: 100vh; display: flex; justify-content: center; align-items: center; padding: 1rem; text-align: center; } .button, input[type="text"] { background-color: #ff4d6d; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 1.25rem; font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 2rem; /* Giảm kích thước font để phù hợp với Baloo 2 */ cursor: pointer; margin: 0.5rem 0; text-align: center; width: 100%; max-width: 20rem; } .button:hover, input[type="text"]:hover { background-color: #e63c5e; } input[type="text"] { cursor: default; background-color: #ff4d6d; color: white; padding: 0.8rem; border-radius: 1.25rem; font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.5rem; /* Giữ nguyên kích thước nhỏ hơn để phù hợp */ width: 100%; max-width: 20rem; margin-bottom: 1rem; } input[type="text"]:focus { outline: none; } .container, .keyboard-container, .counter-container, .memories-container, .final-container, .love-container { display: none; width: 100%; max-width: 25rem; text-align: center; } .active { display: flex; flex-direction: column; align-items: center; width: 100%; } .keyboard { background-color: #fff; border: 0.125rem solid #ff4d6d; border-radius: 0.625rem; padding: 1rem; display: flex; gap: 0.625rem; margin-bottom: 1rem; width: 100%; max-width: 20rem; } .display { width: 8rem; height: 10rem; border: 0.125rem dashed #ff4d6d; margin-right: 1.25rem; line-height: 10rem; font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.5rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ff4d6d; } .keypad { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.3125rem; } .key { background-color: #ff4d6d; color: white; border: none; border-radius: 0.3125rem; width: 3.125rem; height: 3.125rem; font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.5rem; /* Giảm kích thước để phù hợp với Baloo 2 */ cursor: pointer; } .key:hover { background-color: #e63c5e; } .counter, .memories-box, .final-box { margin-bottom: 1rem; width: 100%; max-width: 30rem; } .counter-text, .final-text { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.5rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ff4d6d; margin-bottom: 0.625rem; } .memories-text { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.5rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ffffff; margin: 0rem; } .timer { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 2.5rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ff4d6d; margin-bottom: 0.625rem; } .labels { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 0.875rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ff4d6d; } .footer, .memories-footer, .final-button { background-color: #ff4d6d; color: white; padding: 0.8rem 1.5rem; border: none; border-radius: 1.25rem; font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.25rem; /* Giữ nguyên kích thước để phù hợp */ cursor: pointer; width: 100%; max-width: 20rem; } .hearts { font-family: "Baloo 2", "Noto Sans Symbols", sans-serif; /* Áp dụng font Baloo 2 */ font-weight: bold; font-size: 1.25rem; /* Giảm kích thước để phù hợp với Baloo 2 */ color: #ff4d6d; margin-top: 0.625rem; } .memories-box { background-color: #ff4d6d; padding: 1rem; border-radius: 0.625rem; width: 100%; max-width: 30rem; } /* --- CODE GIAO DIỆN POLAROID (MÀU HỒNG + TIM) --- */
 .memories-images {
     display: flex;
     flex-wrap: wrap;
@@ -472,7 +472,7 @@ async function fetchFinalText() {
 
     } catch (error) {
         console.error('Lỗi:', error);
-        document.getElementById('finalText').textContent = "Loi chuc 5";
+        document.getElementById('finalText').textContent = "Yêu em nhiều lắm!";
     }
 }
 
@@ -677,11 +677,11 @@ function startFallingPhotos() {
         },
         { 
             src: `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic3.jpg`, 
-            msg: "Loi chuc 5" 
+            msg: "Yêu em nhiều lắm" 
         },
         { 
             src: `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic4.jpg`, 
-            msg: "Loi chuc 6" 
+            msg: "Happy Birthday!" 
         }
     ];
 
@@ -926,7 +926,7 @@ function startFallingPhotos() {
                     if (data.error) throw new Error(data.error.message);
 
                     // Thành công
-                    alert("Đã gửi lời nhắn thành công!");
+                    alert("Đã gửi lời nhắn thành công! Yêu em ❤️");
                     replyPopup.style.display = 'none';
                     replyInput.value = ""; 
 
@@ -941,6 +941,208 @@ function startFallingPhotos() {
         }
     });
 </script>
+<div class="switch-container">
+    <span style="font-size: 12px; font-weight: bold; color: #888;">MODE</span>
+    <label class="switch">
+        <input type="checkbox" id="modeCheckbox" onchange="toggleMode()">
+        <span class="slider round"></span>
+    </label>
+</div>
+
+<style>
+    /* 1. GIAO DIỆN CÔNG TẮC ON/OFF */
+    .switch-container {
+        position: fixed;
+        top: 15px; right: 15px;
+        z-index: 9999999;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 5px 10px;
+        border-radius: 30px;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 40px;
+        height: 22px;
+    }
+    .switch input { opacity: 0; width: 0; height: 0; }
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-color: #0277bd; /* Màu Xanh (Bạn bè) */
+        transition: .4s;
+        border-radius: 34px;
+    }
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 3px;
+        bottom: 3px;
+        background-color: white;
+        transition: .4s;
+        border-radius: 50%;
+    }
+    /* Khi BẬT -> Màu Hồng */
+    input:checked + .slider { background-color: #ff4d6d; }
+    input:checked + .slider:before { transform: translateX(18px); }
+
+    /* ================================================================== */
+    /* 2. CSS CHẾ ĐỘ BẠN BÈ (FRIEND MODE - BLUE) */
+    /* ================================================================== */
+
+    /* --- NỀN (BACKGROUND) --- */
+    body.friend-mode #bg-layer {
+        filter: blur(8px) !important;
+        opacity: 1 !important;
+    }
+
+    /* --- XỬ LÝ HIỆU ỨNG TIM BAY NỀN (QUAN TRỌNG) --- */
+    /* Thay thế ảnh nền SVG Hồng bằng SVG Xanh */
+    body.friend-mode #main {
+        background-image: url('data:image/svg+xml;charset=utf8,%3Csvg%20width%3D%22640%22%20height%3D%22480%22%20viewBox%3D%220%200%20640%20480%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%20%3Cstyle%20type%3D%22text%2Fcss%22%3E%20use%5Bhref%3D%22%23heart%22%5D%20%7B%20fill%3A%20%230277bd%3B%20%7D%20%3C%2Fstyle%3E%20%3Csymbol%20id%3D%22heart%22%20viewBox%3D%220%200%2040.0%2040.0%22%3E%20%3Cpath%20d%3D%22M%202%2C13%20A%207%2C17%20325%2C0%2C0%2020%2C37%20A%207%2C17%2035%2C0%2C0%2038%2C13%20A%209%2C9%200%2C0%2C0%2020%2C13%20A%209%2C9%200%2C0%2C0%202%2C13%22%20%2F%3E%20%3C%2Fsymbol%3E%20%3Cg%20transform%3D%22translate%2836.0%2C%20-16.0%29%22%3E%20%3Cuse%20href%3D%22%23heart%22%20width%3D%2240.0%22%20height%3D%2240.0%22%20transform%3D%22scale%280.4%29%22%20%2F%3E%20%3CanimateMotion%20path%3D%22M%200%2C0%20L%200%2C512.0%22%20keyTimes%3D%220%3B1%22%20keySplines%3D%220%200%200.4%200%22%20dur%3D%227000ms%22%20repeatCount%3D%22indefinite%22%20calcMode%3D%22spline%22%20begin%3D%22-7s%22%20%2F%3E%20%3C%2Fg%3E%20%3Cg%20transform%3D%22translate%2888.0%2C%20-36.0%29%22%3E%20%3Cuse%20href%3D%22%23heart%22%20width%3D%2240.0%22%20height%3D%2240.0%22%20transform%3D%22scale%280.9%29%22%20%2F%3E%20%3CanimateMotion%20path%3D%22M%200%2C0%20L%200%2C552.0%22%20keyTimes%3D%220%3B1%22%20keySplines%3D%220%200%200.9%200%22%20dur%3D%225000ms%22%20repeatCount%3D%22indefinite%22%20calcMode%3D%22spline%22%20begin%3D%22-7s%22%20%2F%3E%20%3C%2Fg%3E%20%3Cg%20transform%3D%22translate%28160.0%2C%20-20.0%29%22%3E%20%3Cuse%20href%3D%22%23heart%22%20width%3D%2240.0%22%20height%3D%2240.0%22%20transform%3D%22scale%280.5%29%22%20%2F%3E%20%3CanimateMotion%20path%3D%22M%200%2C0%20L%200%2C520.0%22%20keyTimes%3D%220%3B1%22%20keySplines%3D%220%200%200.5%200%22%20dur%3D%225500ms%22%20repeatCount%3D%22indefinite%22%20calcMode%3D%22spline%22%20begin%3D%22-7s%22%20%2F%3E%20%3C%2Fg%3E%20%3Cg%20transform%3D%22translate%28216.0%2C%20-12.0%29%22%3E%20%3Cuse%20href%3D%22%23heart%22%20width%3D%2240.0%22%20height%3D%2240.0%22%20transform%3D%22scale%280.3%29%22%20%2F%3E%20%3CanimateMotion%20path%3D%22M%200%2C0%20L%200%2C504.0%22%20keyTimes%3D%220%3B1%22%20keySplines%3D%220%200%200.3%200%22%20dur%3D%229500ms%22%20repeatCount%3D%22indefinite%22%20calcMode%3D%22spline%22%20begin%3D%22-7s%22%20%2F%3E%20%3C%2Fg%3E%20%3Cg%20transform%3D%22translate%28264.0%2C%20-36.0%29%22%3E%20%3Cuse%20href%3D%22%23heart%22%20width%3D%2240.0%22%20height%3D%2240.0%22%20transform%3D%22scale%280.9%29%22%20%2F%3E%20%3CanimateMotion%20path%3D%22M%200%2C0%20L%200%2C552.0%22%20keyTimes%3D%220%3B1%22%20keySplines%3D%220%200%200.9%200%22%20dur%3D%2210000ms%22%20repeatCount%3D%22indefinite%22%20calcMode%3D%22spline%22%20begin%3D%22-7s%22%20%2F%3E%20%3C%2Fg%3E%20%3Cg%20transform%3D%22translate%28336.0%2C%20-36.0%29%22%3E%20%3Cuse%20href%3D%22%23heart%22%20width%3D%2240.0%22%20height%3D%2240.0%22%20transform%3D%22scale%280.9%29%22%20%2F%3E%20%3CanimateMotion%20path%3D%22M%200%2C0%20L%200%2C552.0%22%20keyTimes%3D%220%3B1%22%20keySplines%3D%220%200%200.9%200%22%20dur%3D%227500ms%22%20repeatCount%3D%22indefinite%22%20calcMode%3D%22spline%22%20begin%3D%22-7s%22%20%2F%3E%20%3C%2Fg%3E%20%3Cg%20transform%3D%22translate%28408.0%2C%20-12.0%29%22%3E%20%3Cuse%20href%3D%22%23heart%22%20width%3D%2240.0%22%20height%3D%2240.0%22%20transform%3D%22scale%280.3%29%22%20%2F%3E%20%3CanimateMotion%20path%3D%22M%200%2C0%20L%200%2C504.0%22%20keyTimes%3D%220%3B1%22%20keySplines%3D%220%200%200.3%200%22%20dur%3D%226000ms%22%20repeatCount%3D%22indefinite%22%20calcMode%3D%22spline%22%20begin%3D%22-7s%22%20%2F%3E%20%3C%2Fg%3E%20%3Cg%20transform%3D%22translate%28456.0%2C%20-24.0%29%22%3E%20%3Cuse%20href%3D%22%23heart%22%20width%3D%2240.0%22%20height%3D%2240.0%22%20transform%3D%22scale%280.6%29%22%20%2F%3E%20%3CanimateMotion%20path%3D%22M%200%2C0%20L%200%2C528.0%22%20keyTimes%3D%220%3B1%22%20keySplines%3D%220%200%200.6%200%22%20dur%3D%229000ms%22%20repeatCount%3D%22indefinite%22%20calcMode%3D%22spline%22%20begin%3D%22-7s%22%20%2F%3E%20%3C%2Fg%3E%20%3Cg%20transform%3D%22translate%28516.0%2C%20-32.0%29%22%3E%20%3Cuse%20href%3D%22%23heart%22%20width%3D%2240.0%22%20height%3D%2240.0%22%20transform%3D%22scale%280.8%29%22%20%2F%3E%20%3CanimateMotion%20path%3D%22M%200%2C0%20L%200%2C544.0%22%20keyTimes%3D%220%3B1%22%20keySplines%3D%220%200%200.8%200%22%20dur%3D%228000ms%22%20repeatCount%3D%22indefinite%22%20calcMode%3D%22spline%22%20begin%3D%22-7s%22%20%2F%3E%20%3C%2Fg%3E%20%3Cg%20transform%3D%22translate%28584.0%2C%20-20.0%29%22%3E%20%3Cuse%20href%3D%22%23heart%22%20width%3D%2240.0%22%20height%3D%2240.0%22%20transform%3D%22scale%280.5%29%22%20%2F%3E%20%3CanimateMotion%20path%3D%22M%200%2C0%20L%200%2C520.0%22%20keyTimes%3D%220%3B1%22%20keySplines%3D%220%200%200.5%200%22%20dur%3D%226500ms%22%20repeatCount%3D%22indefinite%22%20calcMode%3D%22spline%22%20begin%3D%22-7s%22%20%2F%3E%20%3C%2Fg%3E%3C%2Fsvg%3E') !important;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    /* --- ĐỔI MÀU CHỮ (BỎ HẾT BÓNG TRẮNG) --- */
+    body.friend-mode .love-message,
+    body.friend-mode .counter-text,
+    body.friend-mode .timer,
+    body.friend-mode .labels,
+    body.friend-mode .memories-text,
+    body.friend-mode .reply-title,
+    body.friend-mode .popup-text,
+    body.friend-mode .polaroid-back p,
+    body.friend-mode .final-title, 
+    body.friend-mode .final-box p {
+        color: #01579b !important; 
+        text-shadow: none !important;
+        font-weight: bold !important;
+    }
+
+    /* Nội dung thư bên trong */
+    body.friend-mode .final-text-content {
+        color: #004c8c !important; 
+        font-weight: 700 !important;
+        text-shadow: none !important;
+    }
+
+    /* Chữ I Love You 3000 */
+    body.friend-mode .love-message {
+        color: #0288d1 !important;
+        text-shadow: none !important;
+    }
+
+    /* --- KHUNG VÀ HỘP --- */
+    
+    /* 1. Các khung chung (Keyboard, Album...) -> Nền trắng mờ */
+    body.friend-mode .keyboard,
+    body.friend-mode .memories-box,
+    body.friend-mode .reply-content,
+    body.friend-mode .popup-content,
+    body.friend-mode .display,
+    body.friend-mode .start-avatar,
+    body.friend-mode .final-box { 
+        border-color: #4fc3f7 !important;
+        background-color: rgba(255, 255, 255, 0.9) !important;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 12px !important;
+    }
+
+    /* 2. KHUNG BAO NGOÀI LÁ THƯ (Final Box) -> TRONG SUỐT HOÀN TOÀN */
+    body.friend-mode .final-box {
+        background-color: transparent !important; 
+        border-color: #4fc3f7 !important;
+        box-shadow: none !important;
+    }
+
+    /* 3. KHUNG CÀO BÊN TRONG (Scratch Wrapper) -> MÀU XANH NHẠT */
+    body.friend-mode .scratch-wrapper {
+        background-color: #e1f5fe !important; 
+        border: 2px dashed #0288d1 !important;
+        box-shadow: none !important;
+    }
+
+    /* Trái tim trang trí (Văn bản) */
+    body.friend-mode .hearts, 
+    body.friend-mode .love-heart {
+        color: #0288d1 !important;
+    }
+
+    /* Nút bấm */
+    body.friend-mode .button,
+    body.friend-mode .key,
+    body.friend-mode .footer,
+    body.friend-mode .memories-footer,
+    body.friend-mode .final-button,
+    body.friend-mode .btn-send,
+    body.friend-mode .close-btn {
+        background-color: #0277bd !important;
+        color: white !important;
+        border: none !important;
+    }
+    body.friend-mode .button:hover, body.friend-mode .key:hover {
+        background-color: #01579b !important;
+    }
+
+    /* Polaroid */
+    body.friend-mode .polaroid-front {
+        background-color: #e1f5fe !important;
+        border: 2px solid #81d4fa !important;
+    }
+    body.friend-mode .polaroid-front span {
+        color: #0288d1 !important;
+    }
+
+    /* Password & Input */
+    body.friend-mode #passwordInput {
+        background-color: #fff !important;
+        color: #0277bd !important;
+        border: 2px solid #0277bd !important;
+        font-family: monospace !important;
+    }
+    body.friend-mode #replyInput {
+        border: 1px solid #0288d1 !important;
+        color: #333 !important;
+    }
+</style>
+
+<script>
+    // 1. Kích hoạt ngay chế độ Bạn bè (Xanh) khi vừa vào web
+    (function() {
+        document.body.classList.add("friend-mode");
+    })();
+
+    // 2. Hàm xử lý nút gạt
+    function toggleMode() {
+        var checkBox = document.getElementById("modeCheckbox");
+        var body = document.body;
+
+        if (checkBox.checked == true) {
+            // Nếu BẬT (Gạt phải) -> Xóa class friend-mode -> Hiện màu HỒNG gốc
+            body.classList.remove("friend-mode");
+        } else {
+            // Nếu TẮT (Gạt trái) -> Thêm class friend-mode -> Hiện màu XANH
+            body.classList.add("friend-mode");
+        }
+    }
+</script>
+<style>
+    /* Đổi màu chữ trong lá thư (Chế độ Hồng) sang Đỏ Rượu cho dễ đọc */
+    .final-text-content {
+        color: #ad1457 !important; /* Màu đỏ đậm */
+        font-weight: bold !important;
+        text-shadow: none !important;
+    }
+</style>
 </body><style>
   /* Ghi đè lên tất cả các quy tắc khác */
   html, body {
@@ -950,7 +1152,4 @@ function startFallingPhotos() {
     -webkit-user-select: none;
   }
 </style></html>
-
-
-
 
