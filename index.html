@@ -645,64 +645,295 @@ loveButtonFinal.addEventListener('click', () => {
                         /* --- HÀM TẠO MƯA ẢNH KỶ NIỆM --- */
 /* --- HÀM TẠO MƯA ẢNH KỶ NIỆM (ĐÃ NÂNG CẤP) --- */
 function startFallingPhotos() {
-    // 1. Tạo danh sách ảnh CŨ (lấy theo userId như code gốc)
+    // 1. Danh sách ảnh CŨ (Đã sửa để thêm Lời nhắn)
     const baseUrl = `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/`;
+    
+    // Thay vì chỉ viết link, hãy viết theo cặp { src: "link", msg: "lời nhắn" }
     const oldPhotos = [
-        baseUrl + 'avatar.jpg',
-        baseUrl + 'memory1.jpg',
-        baseUrl + 'memory2.jpg',
-        baseUrl + 'memory3.jpg',
-        baseUrl + 'memory4.jpg'
+        { src: baseUrl + 'avatar.jpg',  msg: "Avatar xinh đẹp nè ❤️" },
+        { src: baseUrl + 'memory1.jpg', msg: "Kỷ niệm số 1 📸" },
+        { src: baseUrl + 'memory2.jpg', msg: "Kỷ niệm số 2 ✈️" },
+        { src: baseUrl + 'memory3.jpg', msg: "Kỷ niệm số 3 🎂" },
+        { src: baseUrl + 'memory4.jpg', msg: "Kỷ niệm số 4 💋" }
     ];
 
-    // 2. Danh sách ảnh MỚI từ Cloudinary (Bạn điền link vào đây)
-    // MẸO: Thêm đoạn "c_fill,h_300,w_300" vào link để ảnh tự cắt vuông đẹp nhất cho hình tim
+    // 2. Danh sách ảnh MỚI (Cũng viết theo kiểu có lời nhắn)
     const newPhotos = [
-        `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic1.jpg`, 
-        `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic2.jpg`,
-        `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic3.jpg`,
-        `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic4.jpg`
-        // ... Thêm tiếp các link ảnh khác của bạn vào đây (nhớ để trong dấu nháy '')
+        { 
+            src: `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic1.jpg`, 
+            msg: "Lời nhắn cho ảnh Pic 1 ở đây" 
+        },
+        { 
+            src: `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic2.jpg`, 
+            msg: "Lời nhắn cho ảnh Pic 2" 
+        },
+        { 
+            src: `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic3.jpg`, 
+            msg: "Yêu em nhiều lắm" 
+        },
+        { 
+            src: `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic4.jpg`, 
+            msg: "Happy Birthday!" 
+        }
     ];
 
-    // Gộp 2 danh sách lại làm một
+    // Gộp 2 danh sách (Logic cũ của bạn)
     const allPhotos = [...oldPhotos, ...newPhotos];
     
-    // Cứ 400ms tạo ra 1 bức ảnh mới (tăng số này lên nếu thấy lag)
+    // Tạo mưa ảnh (Logic cũ của bạn)
     setInterval(() => {
         if (allPhotos.length === 0) return;
 
         const img = document.createElement('img');
-        img.classList.add('falling-photo'); // Class CSS hình trái tim
+        img.classList.add('falling-photo');
         
-        // Chọn ngẫu nhiên 1 ảnh
-        const randomSrc = allPhotos[Math.floor(Math.random() * allPhotos.length)];
-        img.src = randomSrc;
+        // --- PHẦN QUAN TRỌNG: Lấy cả Ảnh và Lời nhắn ---
+        const randomItem = allPhotos[Math.floor(Math.random() * allPhotos.length)];
         
-        // Xử lý lỗi nếu ảnh không tải được (để không hiện khung lỗi xấu)
+        // Gán link ảnh
+        img.src = randomItem.src;
+        
+        // --- THÊM SỰ KIỆN CLICK ---
+        img.onclick = function() {
+            // Lấy các thẻ HTML của popup
+            const popup = document.getElementById('msgPopup');
+            const popupImg = document.getElementById('popupImg');
+            const popupText = document.getElementById('popupText');
+
+            // Gán dữ liệu vào popup
+            popupImg.src = randomItem.src;
+            popupText.innerText = randomItem.msg; // Hiện lời nhắn tương ứng
+            
+            // Hiện popup lên
+            popup.style.display = 'flex';
+        };
+
+        // Các đoạn logic cũ giữ nguyên (xử lý lỗi, vị trí, tốc độ...)
         img.onerror = function() { this.style.display = 'none'; };
 
-        // Random vị trí ngang (trừ bớt biên để không bị mất nửa hình)
         const leftPos = Math.random() * (window.innerWidth - 80);
         img.style.left = leftPos + 'px';
         
-        // Random kích thước trái tim (từ 50px đến 100px)
         const size = Math.random() * 50 + 50; 
         img.style.width = size + 'px';
-        img.style.height = size + 'px'; // Luôn giữ vuông để mask trái tim chuẩn
+        img.style.height = size + 'px';
         
-        // Random tốc độ rơi (4s đến 9s - rơi chậm lại xíu cho lãng mạn)
         const duration = Math.random() * 5 + 4; 
         img.style.animation = `fallDown ${duration}s linear forwards`;
         
         document.body.appendChild(img);
         
-        // Xóa ảnh sau khi rơi xong
         setTimeout(() => { img.remove(); }, duration * 1000);
         
     }, 400);
 }
-						</script></div></div></div></div><script>(function() {var on = addEventListener,off = removeEventListener,$ = function(q) { return document.querySelector(q) },$$ = function(q) { return document.querySelectorAll(q) },$body = document.body,$inner = $('.inner'),client = (function() {var o = {browser: 'other',browserVersion: 0,os: 'other',osVersion: 0,mobile: false,canUse: null,flags: {lsdUnits: false,},},ua = navigator.userAgent,a, i;a = [['firefox',/Firefox\/([0-9\.]+)/,null],['edge',/Edge\/([0-9\.]+)/,null],['safari',/Version\/([0-9\.]+).+Safari/,null],['chrome',/Chrome\/([0-9\.]+)/,null],['chrome',/CriOS\/([0-9\.]+)/,null],['ie',/Trident\/.+rv:([0-9]+)/,null],['safari',/iPhone OS ([0-9_]+)/,function(v) { return v.replace('_', '.').replace('_', ''); }]];for (i=0; i < a.length; i++) {if (ua.match(a[i][1])) {o.browser = a[i][0];o.browserVersion = parseFloat( a[i][2] ? (a[i][2])(RegExp.$1) : RegExp.$1 );break;}}a = [['ios',/([0-9_]+) like Mac OS X/,function(v) { return v.replace('_', '.').replace('_', ''); }],['ios',/CPU like Mac OS X/,function(v) { return 0 }],['ios',/iPad; CPU/,function(v) { return 0 }],['android',/Android ([0-9\.]+)/,null],['mac',/Macintosh.+Mac OS X ([0-9_]+)/,function(v) { return v.replace('_', '.').replace('_', ''); }],['windows',/Windows NT ([0-9\.]+)/,null],['undefined',/Undefined/,null]];for (i=0; i < a.length; i++) {if (ua.match(a[i][1])) {o.os = a[i][0];o.osVersion = parseFloat( a[i][2] ? (a[i][2])(RegExp.$1) : RegExp.$1 );break;}}if (o.os == 'mac'&& ('ontouchstart' in window)&& ((screen.width == 1024 && screen.height == 1366)|| (screen.width == 834 && screen.height == 1112)|| (screen.width == 810 && screen.height == 1080)|| (screen.width == 768 && screen.height == 1024)))o.os = 'ios';o.mobile = (o.os == 'android' || o.os == 'ios');var _canUse = document.createElement('div');o.canUse = function(property, value) {var style;style = _canUse.style;if (!(property in style))return false;if (typeof value !== 'undefined') {style[property] = value;if (style[property] == '')return false;}return true;};o.flags.lsdUnits = o.canUse('width', '100dvw');return o;}()),ready = {list: [],add: function(f) {this.list.push(f);},run: function() {this.list.forEach((f) => {f();});},},trigger = function(t) {dispatchEvent(new Event(t));},cssRules = function(selectorText) {var ss = document.styleSheets,a = [],f = function(s) {var r = s.cssRules,i;for (i=0; i < r.length; i++) {if (r[i] instanceof CSSMediaRule && matchMedia(r[i].conditionText).matches)(f)(r[i]); else if (r[i] instanceof CSSStyleRule && r[i].selectorText == selectorText)a.push(r[i]);}},x, i;for (i=0; i < ss.length; i++)f(ss[i]);return a;},escapeHtml = function(s) {if (s === ''|| s === null|| s === undefined)return '';var a = {'&': '&amp;','<': '&lt;','>': '&gt;','"': '&quot;',"'": '&#39;',};s = s.replace(/[&<>"']/g, function(x) {return a[x];});return s;},thisHash = function() {var h = location.hash ? location.hash.substring(1) : null,a;if (!h)return null;if (h.match(/\?/)) {a = h.split('?');h = a[0];history.replaceState(undefined, undefined, '#' + h);window.location.search = a[1];}if (h.length > 0&& !h.match(/^[a-zA-Z]/))h = 'x' + h;if (typeof h == 'string')h = h.toLowerCase();return h;},scrollToElement = function(e, style, duration) {var y, cy, dy,start, easing, offset, f;if (!e)y = 0; else {offset = (e.dataset.scrollOffset ? parseInt(e.dataset.scrollOffset) : 0) * parseFloat(getComputedStyle(document.documentElement).fontSize);switch (e.dataset.scrollBehavior ? e.dataset.scrollBehavior : 'default') {case 'default':default:y = e.offsetTop + offset;break;case 'center':if (e.offsetHeight < window.innerHeight)y = e.offsetTop - ((window.innerHeight - e.offsetHeight) / 2) + offset; else y = e.offsetTop - offset;break;case 'previous':if (e.previousElementSibling)y = e.previousElementSibling.offsetTop + e.previousElementSibling.offsetHeight + offset; else y = e.offsetTop + offset;break;}}if (!style)style = 'smooth';if (!duration)duration = 750;if (style == 'instant') {window.scrollTo(0, y);return;}start = Date.now();cy = window.scrollY;dy = y - cy;switch (style) {case 'linear':easing = function (t) { return t };break;case 'smooth':easing = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 };break;}f = function() {var t = Date.now() - start;if (t >= duration)window.scroll(0, y); else {window.scroll(0, cy + (dy * easing(t / duration)));requestAnimationFrame(f);}};f();},scrollToTop = function() {scrollToElement(null);},loadElements = function(parent) {var a, e, x, i;a = parent.querySelectorAll('iframe[data-src]:not([data-src=""])');for (i=0; i < a.length; i++) {a[i].contentWindow.location.replace(a[i].dataset.src);a[i].dataset.initialSrc = a[i].dataset.src;a[i].dataset.src = '';}a = parent.querySelectorAll('video[autoplay]');for (i=0; i < a.length; i++) {if (a[i].paused)a[i].play();}e = parent.querySelector('[data-autofocus="1"]');x = e ? e.tagName : null;switch (x) {case 'FORM':e = e.querySelector('.field input, .field select, .field textarea');if (e)e.focus();break;default:break;}a = parent.querySelectorAll('unloaded-script');for (i=0; i < a.length; i++) {x = document.createElement('script');x.setAttribute('data-loaded', '');if (a[i].getAttribute('src'))x.setAttribute('src', a[i].getAttribute('src'));if (a[i].textContent)x.textContent = a[i].textContent;a[i].replaceWith(x);}x = new Event('loadelements');a = parent.querySelectorAll('[data-unloaded]');a.forEach((element) => {element.removeAttribute('data-unloaded');element.dispatchEvent(x);});},unloadElements = function(parent) {var a, e, x, i;a = parent.querySelectorAll('iframe[data-src=""]');for (i=0; i < a.length; i++) {if (a[i].dataset.srcUnload === '0')continue;if ('initialSrc' in a[i].dataset)a[i].dataset.src = a[i].dataset.initialSrc; else a[i].dataset.src = a[i].src;a[i].contentWindow.location.replace('about:blank');}a = parent.querySelectorAll('video');for (i=0; i < a.length; i++) {if (!a[i].paused)a[i].pause();}e = $(':focus');if (e)e.blur();};window._scrollToTop = scrollToTop;var thisUrl = function() {return window.location.href.replace(window.location.search, '').replace(/#$/, '');};var getVar = function(name) {var a = window.location.search.substring(1).split('&'),b, k;for (k in a) {b = a[k].split('=');if (b[0] == name)return b[1];}return null;};var errors = {handle: function(handler) {window.onerror = function(message, url, line, column, error) {(handler)(error.message);return true;};},unhandle: function() {window.onerror = null;}};loadElements(document.body);var style, sheet, rule;style = document.createElement('style');style.appendChild(document.createTextNode(''));document.head.appendChild(style);sheet = style.sheet;if (client.mobile) {(function() {if (client.flags.lsdUnits) {document.documentElement.style.setProperty('--viewport-height', '100svh');document.documentElement.style.setProperty('--background-height', '100lvh');} else {var f = function() {document.documentElement.style.setProperty('--viewport-height', window.innerHeight + 'px');document.documentElement.style.setProperty('--background-height', (window.innerHeight + 250) + 'px');};on('load', f);on('orientationchange', function() {setTimeout(function() {(f)();}, 100);});}})();}if (client.os == 'android') {(function() {sheet.insertRule('body::after { }', 0);rule = sheet.cssRules[0];var f = function() {rule.style.cssText = 'height: ' + (Math.max(screen.width, screen.height)) + 'px';};on('load', f);on('orientationchange', f);on('touchmove', f);})();$body.classList.add('is-touch');} else if (client.os == 'ios') {if (client.osVersion <= 11)(function() {sheet.insertRule('body::after { }', 0);rule = sheet.cssRules[0];rule.style.cssText = '-webkit-transform: scale(1.0)';})();if (client.osVersion <= 11)(function() {sheet.insertRule('body.ios-focus-fix::before { }', 0);rule = sheet.cssRules[0];rule.style.cssText = 'height: calc(100% + 60px)';on('focus', function(event) {$body.classList.add('ios-focus-fix');}, true);on('blur', function(event) {$body.classList.remove('ios-focus-fix');}, true);})();$body.classList.add('is-touch');}ready.run();})();</script></body><style>
+						</script></div></div></div></div><script>(function() {var on = addEventListener,off = removeEventListener,$ = function(q) { return document.querySelector(q) },$$ = function(q) { return document.querySelectorAll(q) },$body = document.body,$inner = $('.inner'),client = (function() {var o = {browser: 'other',browserVersion: 0,os: 'other',osVersion: 0,mobile: false,canUse: null,flags: {lsdUnits: false,},},ua = navigator.userAgent,a, i;a = [['firefox',/Firefox\/([0-9\.]+)/,null],['edge',/Edge\/([0-9\.]+)/,null],['safari',/Version\/([0-9\.]+).+Safari/,null],['chrome',/Chrome\/([0-9\.]+)/,null],['chrome',/CriOS\/([0-9\.]+)/,null],['ie',/Trident\/.+rv:([0-9]+)/,null],['safari',/iPhone OS ([0-9_]+)/,function(v) { return v.replace('_', '.').replace('_', ''); }]];for (i=0; i < a.length; i++) {if (ua.match(a[i][1])) {o.browser = a[i][0];o.browserVersion = parseFloat( a[i][2] ? (a[i][2])(RegExp.$1) : RegExp.$1 );break;}}a = [['ios',/([0-9_]+) like Mac OS X/,function(v) { return v.replace('_', '.').replace('_', ''); }],['ios',/CPU like Mac OS X/,function(v) { return 0 }],['ios',/iPad; CPU/,function(v) { return 0 }],['android',/Android ([0-9\.]+)/,null],['mac',/Macintosh.+Mac OS X ([0-9_]+)/,function(v) { return v.replace('_', '.').replace('_', ''); }],['windows',/Windows NT ([0-9\.]+)/,null],['undefined',/Undefined/,null]];for (i=0; i < a.length; i++) {if (ua.match(a[i][1])) {o.os = a[i][0];o.osVersion = parseFloat( a[i][2] ? (a[i][2])(RegExp.$1) : RegExp.$1 );break;}}if (o.os == 'mac'&& ('ontouchstart' in window)&& ((screen.width == 1024 && screen.height == 1366)|| (screen.width == 834 && screen.height == 1112)|| (screen.width == 810 && screen.height == 1080)|| (screen.width == 768 && screen.height == 1024)))o.os = 'ios';o.mobile = (o.os == 'android' || o.os == 'ios');var _canUse = document.createElement('div');o.canUse = function(property, value) {var style;style = _canUse.style;if (!(property in style))return false;if (typeof value !== 'undefined') {style[property] = value;if (style[property] == '')return false;}return true;};o.flags.lsdUnits = o.canUse('width', '100dvw');return o;}()),ready = {list: [],add: function(f) {this.list.push(f);},run: function() {this.list.forEach((f) => {f();});},},trigger = function(t) {dispatchEvent(new Event(t));},cssRules = function(selectorText) {var ss = document.styleSheets,a = [],f = function(s) {var r = s.cssRules,i;for (i=0; i < r.length; i++) {if (r[i] instanceof CSSMediaRule && matchMedia(r[i].conditionText).matches)(f)(r[i]); else if (r[i] instanceof CSSStyleRule && r[i].selectorText == selectorText)a.push(r[i]);}},x, i;for (i=0; i < ss.length; i++)f(ss[i]);return a;},escapeHtml = function(s) {if (s === ''|| s === null|| s === undefined)return '';var a = {'&': '&amp;','<': '&lt;','>': '&gt;','"': '&quot;',"'": '&#39;',};s = s.replace(/[&<>"']/g, function(x) {return a[x];});return s;},thisHash = function() {var h = location.hash ? location.hash.substring(1) : null,a;if (!h)return null;if (h.match(/\?/)) {a = h.split('?');h = a[0];history.replaceState(undefined, undefined, '#' + h);window.location.search = a[1];}if (h.length > 0&& !h.match(/^[a-zA-Z]/))h = 'x' + h;if (typeof h == 'string')h = h.toLowerCase();return h;},scrollToElement = function(e, style, duration) {var y, cy, dy,start, easing, offset, f;if (!e)y = 0; else {offset = (e.dataset.scrollOffset ? parseInt(e.dataset.scrollOffset) : 0) * parseFloat(getComputedStyle(document.documentElement).fontSize);switch (e.dataset.scrollBehavior ? e.dataset.scrollBehavior : 'default') {case 'default':default:y = e.offsetTop + offset;break;case 'center':if (e.offsetHeight < window.innerHeight)y = e.offsetTop - ((window.innerHeight - e.offsetHeight) / 2) + offset; else y = e.offsetTop - offset;break;case 'previous':if (e.previousElementSibling)y = e.previousElementSibling.offsetTop + e.previousElementSibling.offsetHeight + offset; else y = e.offsetTop + offset;break;}}if (!style)style = 'smooth';if (!duration)duration = 750;if (style == 'instant') {window.scrollTo(0, y);return;}start = Date.now();cy = window.scrollY;dy = y - cy;switch (style) {case 'linear':easing = function (t) { return t };break;case 'smooth':easing = function (t) { return t<.5 ? 4*t*t*t : (t-1)*(2*t-2)*(2*t-2)+1 };break;}f = function() {var t = Date.now() - start;if (t >= duration)window.scroll(0, y); else {window.scroll(0, cy + (dy * easing(t / duration)));requestAnimationFrame(f);}};f();},scrollToTop = function() {scrollToElement(null);},loadElements = function(parent) {var a, e, x, i;a = parent.querySelectorAll('iframe[data-src]:not([data-src=""])');for (i=0; i < a.length; i++) {a[i].contentWindow.location.replace(a[i].dataset.src);a[i].dataset.initialSrc = a[i].dataset.src;a[i].dataset.src = '';}a = parent.querySelectorAll('video[autoplay]');for (i=0; i < a.length; i++) {if (a[i].paused)a[i].play();}e = parent.querySelector('[data-autofocus="1"]');x = e ? e.tagName : null;switch (x) {case 'FORM':e = e.querySelector('.field input, .field select, .field textarea');if (e)e.focus();break;default:break;}a = parent.querySelectorAll('unloaded-script');for (i=0; i < a.length; i++) {x = document.createElement('script');x.setAttribute('data-loaded', '');if (a[i].getAttribute('src'))x.setAttribute('src', a[i].getAttribute('src'));if (a[i].textContent)x.textContent = a[i].textContent;a[i].replaceWith(x);}x = new Event('loadelements');a = parent.querySelectorAll('[data-unloaded]');a.forEach((element) => {element.removeAttribute('data-unloaded');element.dispatchEvent(x);});},unloadElements = function(parent) {var a, e, x, i;a = parent.querySelectorAll('iframe[data-src=""]');for (i=0; i < a.length; i++) {if (a[i].dataset.srcUnload === '0')continue;if ('initialSrc' in a[i].dataset)a[i].dataset.src = a[i].dataset.initialSrc; else a[i].dataset.src = a[i].src;a[i].contentWindow.location.replace('about:blank');}a = parent.querySelectorAll('video');for (i=0; i < a.length; i++) {if (!a[i].paused)a[i].pause();}e = $(':focus');if (e)e.blur();};window._scrollToTop = scrollToTop;var thisUrl = function() {return window.location.href.replace(window.location.search, '').replace(/#$/, '');};var getVar = function(name) {var a = window.location.search.substring(1).split('&'),b, k;for (k in a) {b = a[k].split('=');if (b[0] == name)return b[1];}return null;};var errors = {handle: function(handler) {window.onerror = function(message, url, line, column, error) {(handler)(error.message);return true;};},unhandle: function() {window.onerror = null;}};loadElements(document.body);var style, sheet, rule;style = document.createElement('style');style.appendChild(document.createTextNode(''));document.head.appendChild(style);sheet = style.sheet;if (client.mobile) {(function() {if (client.flags.lsdUnits) {document.documentElement.style.setProperty('--viewport-height', '100svh');document.documentElement.style.setProperty('--background-height', '100lvh');} else {var f = function() {document.documentElement.style.setProperty('--viewport-height', window.innerHeight + 'px');document.documentElement.style.setProperty('--background-height', (window.innerHeight + 250) + 'px');};on('load', f);on('orientationchange', function() {setTimeout(function() {(f)();}, 100);});}})();}if (client.os == 'android') {(function() {sheet.insertRule('body::after { }', 0);rule = sheet.cssRules[0];var f = function() {rule.style.cssText = 'height: ' + (Math.max(screen.width, screen.height)) + 'px';};on('load', f);on('orientationchange', f);on('touchmove', f);})();$body.classList.add('is-touch');} else if (client.os == 'ios') {if (client.osVersion <= 11)(function() {sheet.insertRule('body::after { }', 0);rule = sheet.cssRules[0];rule.style.cssText = '-webkit-transform: scale(1.0)';})();if (client.osVersion <= 11)(function() {sheet.insertRule('body.ios-focus-fix::before { }', 0);rule = sheet.cssRules[0];rule.style.cssText = 'height: calc(100% + 60px)';on('focus', function(event) {$body.classList.add('ios-focus-fix');}, true);on('blur', function(event) {$body.classList.remove('ios-focus-fix');}, true);})();$body.classList.add('is-touch');}ready.run();})();</script><style>
+    /* 1. Sửa lỗi không bấm được vào ảnh (Quan trọng) */
+    .falling-photo {
+        pointer-events: auto !important;
+        cursor: pointer;
+        z-index: 9999 !important;
+    }
+
+    /* 2. Giao diện khung hiện chữ (Popup) */
+    #msgPopup {
+        display: none;
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0,0,0,0.8);
+        z-index: 100000;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        animation: fadeIn 0.3s;
+    }
+    .popup-content {
+        background: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        text-align: center;
+        width: 90%;
+        max-width: 350px;
+        border: 3px solid #ff4d6d;
+    }
+    .popup-content img {
+        width: 100%; height: auto; max-height: 300px;
+        object-fit: contain; border-radius: 10px; margin-bottom: 10px;
+    }
+    .popup-text {
+        font-family: "Baloo 2", cursive; font-size: 1.2rem;
+        color: #ff4d6d; font-weight: bold; margin-bottom: 15px;
+    }
+    .close-btn {
+        background: #ff4d6d; color: white; border: none;
+        padding: 8px 20px; border-radius: 20px; font-weight: bold;
+    }
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+</style>
+<div id="msgPopup">
+    <div class="popup-content">
+        <img id="popupImg" src="">
+        <div id="popupText" class="popup-text"></div>
+        <button class="close-btn" onclick="document.getElementById('msgPopup').style.display='none'">Đóng lại</button>
+    </div>
+</div>
+<style>
+    /* Khung nền mờ */
+    #replyPopup {
+        display: none; /* Mặc định ẩn */
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        background: rgba(0, 0, 0, 0.85);
+        z-index: 99999; /* Cao nhất để đè lên mọi thứ */
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        animation: fadeIn 0.3s;
+    }
+
+    /* Hộp nội dung chính */
+    .reply-content {
+        background: #fff;
+        padding: 25px;
+        border-radius: 15px;
+        text-align: center;
+        width: 90%;
+        max-width: 400px;
+        border: 4px solid #ff4d6d;
+        box-shadow: 0 0 20px rgba(255, 77, 109, 0.5);
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .reply-title {
+        font-family: "Baloo 2", cursive;
+        color: #ff4d6d;
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    /* Ô nhập liệu */
+    #replyInput {
+        width: 100%;
+        height: 120px;
+        padding: 10px;
+        border: 2px solid #ffccd5;
+        border-radius: 10px;
+        font-family: "Baloo 2", sans-serif;
+        font-size: 1.1rem;
+        resize: none;
+        outline: none;
+        color: #333;
+    }
+    #replyInput:focus { border-color: #ff4d6d; }
+
+    /* Nút bấm */
+    .action-btn {
+        padding: 10px 0;
+        border-radius: 25px;
+        border: none;
+        font-family: "Baloo 2", cursive;
+        font-size: 1.2rem;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+    .btn-send { background-color: #ff4d6d; color: white; }
+    .btn-send:hover { background-color: #e63c5e; }
+    .btn-cancel { background-color: #eee; color: #666; }
+
+    /* Hiệu ứng tay chỉ vào chữ I Love You */
+    .love-message { cursor: pointer; transition: transform 0.2s; }
+    .love-message:hover { transform: scale(1.1); }
+</style>
+
+<div id="replyPopup">
+    <div class="reply-content">
+        <h3 class="reply-title">Gửi lời nhắn cho anh ❤️</h3>
+        <textarea id="replyInput" placeholder="Viết gì đó vào đây nhé..."></textarea>
+        <button id="btnSendReply" class="action-btn btn-send">Gửi ngay 💌</button>
+        <button class="action-btn btn-cancel" onclick="document.getElementById('replyPopup').style.display='none'">Để sau</button>
+    </div>
+</div>
+
+<script>
+    // --- CẤU HÌNH ---
+    const UPLOAD_PRESET = 'ml_default'; // Tên preset (Nhớ bật Unsigned trên Cloudinary nhé)
+    const CLOUD_NAME = 'dkcgsjtls';     // Tên cloud của bạn
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const loveMsgElement = document.querySelector('.love-message');
+        const replyPopup = document.getElementById('replyPopup');
+        const replyInput = document.getElementById('replyInput');
+        const btnSend = document.getElementById('btnSendReply');
+
+        // Bắt sự kiện click vào chữ "I LOVE YOU 3000"
+        if(loveMsgElement && replyPopup) {
+            loveMsgElement.addEventListener('click', () => {
+                replyPopup.style.display = 'flex';
+                if(replyInput) replyInput.focus();
+            });
+        }
+
+        // Xử lý khi bấm nút Gửi
+        if(btnSend) {
+            btnSend.addEventListener('click', async () => {
+                const text = replyInput.value.trim();
+                if (!text) {
+                    alert("Đừng để trống nha 😢");
+                    return;
+                }
+
+                // Khóa nút để tránh bấm nhiều lần
+                const originalText = btnSend.innerText;
+                btnSend.innerText = "Đang gửi...";
+                btnSend.disabled = true;
+
+                try {
+                    // Tạo tên file theo thời gian thực
+                    const now = new Date();
+                    const timeStr = `${now.getFullYear()}-${now.getMonth()+1}-${now.getDate()}_${now.getHours()}h${now.getMinutes()}`;
+                    const fileName = `reply_${timeStr}.txt`;
+                    
+                    const file = new File([text], fileName, { type: "text/plain" });
+
+                    // Gói dữ liệu
+                    const formData = new FormData();
+                    formData.append('file', file);
+                    formData.append('upload_preset', UPLOAD_PRESET);
+                    formData.append('folder', userId + '/replies'); 
+
+                    // Gửi lên Cloudinary
+                    const response = await fetch(`https://api.cloudinary.com/v1_1/${CLOUD_NAME}/raw/upload`, {
+                        method: 'POST',
+                        body: formData
+                    });
+
+                    const data = await response.json();
+
+                    if (data.error) throw new Error(data.error.message);
+
+                    // Thành công
+                    //alert("Đã gửi lời nhắn thành công! Yêu em ❤️");
+                    replyPopup.style.display = 'none';
+                    replyInput.value = ""; 
+
+                } catch (error) {
+                    console.error('Lỗi upload:', error);
+                    //alert("Lỗi: " + error.message + "\n(Hãy kiểm tra xem ml_default đã bật Unsigned chưa nhé!)");
+                } finally {
+                    btnSend.innerText = originalText;
+                    btnSend.disabled = false;
+                }
+            });
+        }
+    });
+</script>
+</body><style>
   /* Ghi đè lên tất cả các quy tắc khác */
   html, body {
     touch-action: manipulation !important;
