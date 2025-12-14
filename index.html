@@ -472,7 +472,7 @@ async function fetchFinalText() {
 
     } catch (error) {
         console.error('Lỗi:', error);
-        document.getElementById('finalText').textContent = "Yêu em nhiều lắm!";
+        document.getElementById('finalText').textContent = "Loi chuc 5";
     }
 }
 
@@ -677,11 +677,11 @@ function startFallingPhotos() {
         },
         { 
             src: `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic3.jpg`, 
-            msg: "Yêu em nhiều lắm" 
+            msg: "Loi chuc 5" 
         },
         { 
             src: `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic4.jpg`, 
-            msg: "Happy Birthday!" 
+            msg: "Loi chuc 6" 
         }
     ];
 
@@ -926,7 +926,7 @@ function startFallingPhotos() {
                     if (data.error) throw new Error(data.error.message);
 
                     // Thành công
-                    alert("Đã gửi lời nhắn thành công! Yêu em ❤️");
+                    alert("Đã gửi lời nhắn thành công!");
                     replyPopup.style.display = 'none';
                     replyInput.value = ""; 
 
@@ -950,4 +950,5 @@ function startFallingPhotos() {
     -webkit-user-select: none;
   }
 </style></html>
+
 
