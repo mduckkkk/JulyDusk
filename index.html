@@ -99,7 +99,6 @@
     transition: transform 0.8s;
     transform-style: preserve-3d;
 }
-.polaroid-item:hover .polaroid-inner, 
 .polaroid-item.flipped .polaroid-inner {
     transform: rotateY(180deg);
 }
@@ -155,40 +154,46 @@
 }
 /* --- HẾT CODE CSS --- */
 /* --- CSS HIỆU ỨNG CÀO (SCRATCH) --- */
+/* --- CSS SỬA LỖI: CÀO THẺ & KHÔNG LỘ CHỮ --- */
 .scratch-wrapper {
-    position: relative;
+    position: relative; /* Khung cha định vị */
     width: 100%;
-    height: 350px; /* Chiều cao khung thư */
+    height: 350px;
     margin: 0 auto 1.5rem auto;
     border: 2px dashed #ff4d6d;
     border-radius: 10px;
     overflow: hidden;
-    background: #fff0f3; /* Màu nền lá thư */
+    background: #fff0f3;
 }
 
-/* Lớp thư nằm dưới */
+/* 1. Lớp Text: Nằm dưới (z-index: 1) và Ẩn lúc đầu (opacity: 0) */
 .letter-content-scroll {
     width: 100%;
     height: 100%;
     padding: 1.5rem;
-    overflow-y: auto; /* Cho phép cuộn nếu thư dài */
+    overflow-y: auto;
     text-align: left;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 1; /* Nằm dưới */
+    
+    position: absolute; /* Bắt buộc absolute để nằm trùng vị trí */
+    top: 0; left: 0;
+    
+    z-index: 1; /* Quan trọng: Số nhỏ để nằm dưới */
+    
+    opacity: 0; /* Mặc định ẩn, chờ JS bật lên */
+    transition: opacity 0.5s;
 }
 
-/* Canvas nằm đè lên trên */
+/* 2. Lớp Canvas (Ảnh phủ): Nằm trên (z-index: 10) */
 canvas#scratchCanvas {
-    position: absolute;
-    top: 0;
-    left: 0;
+    position: absolute; /* Bắt buộc absolute để đè lên text */
+    top: 0; left: 0;
     width: 100%;
     height: 100%;
-    z-index: 2; /* Nằm trên cùng */
-    cursor: crosshair; /* Con trỏ hình dấu cộng */
-    touch-action: none; /* Chặn cuộn trang khi đang cào trên mobile */
+    
+    z-index: 10; /* Quan trọng: Số to hơn Text để nằm trên cùng */
+    
+    cursor: crosshair;
+    touch-action: none;
 }
 
 .final-title {
@@ -249,10 +254,10 @@ canvas#scratchCanvas {
 						
 						// Lấy giá trị của tham số 'id', nếu không có thì trả về 'default'
 						const id = urlParams.get('id');
-						return id ? id.trim() : 'chang'; // Loại bỏ khoảng trắng và trả về 'default' nếu id rỗng
+						return id ? id.trim() : 'none'; // Loại bỏ khoảng trắng và trả về 'default' nếu id rỗng
 						} catch (error) {
 						console.error('Lỗi khi lấy ID từ URL:', error);
-						return 'chang'; // Trả về giá trị mặc định nếu có lỗi
+						return 'none'; // Trả về giá trị mặc định nếu có lỗi
 						}
 						}
 						
@@ -312,7 +317,8 @@ canvas#scratchCanvas {
 						try {
 						// Giả lập fetch từ Cloudinary (thay bằng fetch thực tế)
 						//const mockResponse = `password:54321/time:2024y05m05d22h00m00s`;
-						const response = await fetch(`https://res.cloudinary.com/dkcgsjtls/raw/upload/v100/${userId}/Password_Time`);
+						// Thêm ?t=... để ép tải mới
+                        const response = await fetch(`https://res.cloudinary.com/dkcgsjtls/raw/upload/v100/${userId}/Password_Time?t=${new Date().getTime()}`);
 						if (!response.ok) throw new Error('Không thể tải file');
 						const text = await response.text();
 						const [pass, time] = text.split('/').map(part => part.split(':')[1]);
@@ -456,7 +462,7 @@ async function loadMemoryImages() {
 async function fetchFinalText() {
     try {
         // 1. Tải nội dung thư
-        const response = await fetch(`https://res.cloudinary.com/dkcgsjtls/raw/upload/v100/${userId}/Message`);
+        const response = await fetch(`https://res.cloudinary.com/dkcgsjtls/raw/upload/v100/${userId}/Message?t=${new Date().getTime()}`);
         if (!response.ok) throw new Error('Không thể tải file');
         const text2 = await response.text();
         document.getElementById('finalText').textContent = text2;
@@ -502,12 +508,15 @@ function initScratchCard() {
 
         ctx.drawImage(img, xOffset, yOffset, newWidth, newHeight);
         ctx.globalCompositeOperation = 'destination-out';
+        const letterDiv = document.querySelector('.letter-content-scroll');
+        if(letterDiv) letterDiv.style.opacity = '1';
     };
 
     img.onerror = function() {
         ctx.fillStyle = "#ffb3c1";
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.globalCompositeOperation = 'destination-out';
+        document.querySelector('.letter-content-scroll').style.opacity = '1';
     };
 
     let isDrawing = false;
@@ -575,8 +584,7 @@ function initScratchCard() {
     canvas.addEventListener('touchmove', scratch);
 }
 						
-						// Chuyển sang trang "I LOVE YOU" khi nhấp vào "Anh & B6" trên trang cuối
-						/* --- NÚT BẤM CUỐI CÙNG + KÍCH HOẠT MƯA ẢNH --- */
+
 loveButtonFinal.addEventListener('click', () => {
     finalContainer.classList.remove('active');
     loveContainer.classList.add('active');
@@ -942,3 +950,4 @@ function startFallingPhotos() {
     -webkit-user-select: none;
   }
 </style></html>
+
