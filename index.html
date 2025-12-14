@@ -677,11 +677,11 @@ function startFallingPhotos() {
         },
         { 
             src: `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic3.jpg`, 
-            msg: "Yêu em nhiều lắm" 
+            msg: "Lời nhắn cho ảnh Pic 3" 
         },
         { 
             src: `https://res.cloudinary.com/dkcgsjtls/image/upload/c_fill,h_300,w_300/v100/${userId}/pic4.jpg`, 
-            msg: "Happy Birthday!" 
+            msg: "Lời nhắn cho ảnh Pic 4" 
         }
     ];
 
@@ -942,7 +942,7 @@ function startFallingPhotos() {
     });
 </script>
 <div class="switch-container">
-    <span style="font-size: 12px; font-weight: bold; color: #888;">MODE</span>
+    <span style="font-size: 12px; font-weight: bold; color: #888;"></span>
     <label class="switch">
         <input type="checkbox" id="modeCheckbox" onchange="toggleMode()">
         <span class="slider round"></span>
@@ -1113,6 +1113,11 @@ function startFallingPhotos() {
         border: 1px solid #0288d1 !important;
         color: #333 !important;
     }
+    /* CHỈNH LẠI AVATAR CHẾ ĐỘ XANH THÀNH HÌNH TRÒN */
+    body.friend-mode .start-avatar {
+        border-radius: 50% !important; /* 50% là tròn xoe */
+        border: 4px solid #0288d1 !important; /* Viền xanh đậm cho nổi */
+    }
 </style>
 
 <script>
@@ -1143,6 +1148,7 @@ function startFallingPhotos() {
         text-shadow: none !important;
     }
 </style>
+
 </body><style>
   /* Ghi đè lên tất cả các quy tắc khác */
   html, body {
@@ -1151,5 +1157,6 @@ function startFallingPhotos() {
     user-select: none; /* Cấm bôi đen text luôn cho giống App */
     -webkit-user-select: none;
   }
-</style></html>
+</style>
+</html>
 
