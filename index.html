@@ -429,6 +429,15 @@
                 --spacing: 0.5625rem;
             }
         }
+        html, body {
+            touch-action: manipulation; 
+            -webkit-user-select: none;
+            user-select: none;
+        }
+        input, textarea {
+            -webkit-user-select: auto !important;
+            user-select: auto !important;
+        }
     </style>
 </head>
 
@@ -1380,6 +1389,9 @@
         let tempSecurityPass = "";
 
         document.addEventListener('DOMContentLoaded', () => {
+            document.addEventListener('dblclick', function(event) {
+            event.preventDefault();
+            }, { passive: false });
             // Sửa lỗi nền trắng: Thêm CSS background transparent cho body, wrapper, main
             document.body.style.backgroundColor = "transparent";
             document.getElementById('wrapper').style.backgroundColor = "transparent";
