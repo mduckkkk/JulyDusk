@@ -2,11 +2,11 @@
 <html lang="en">
 
 <head>
-    <title>Gửi Thuỳ Chang</title>
+    <title>Hello Chang Chill</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <meta name="color-scheme" content="light only" />
-    <meta name="description" content="For your lover's birthday" />
+    <meta name="description" content="For your fri" />
     <meta property="og:site_name" content="JulyDusk" />
     <meta property="og:title" content="JulyDusk" />
     <meta property="og:type" content="website" />
@@ -472,7 +472,7 @@
                         rel="stylesheet">
                     <div id="startContainer" class="container active">
                         <img id="startAvatar" src="" alt="Avatar" class="start-avatar">
-                        <button id="loveButton" class="button">Hi! For you...</button>
+                        <button id="loveButton" class="button">Happy New Year MeoMeo</button>
                         <style>
                             .start-avatar {
                                 width: 10rem;
@@ -540,7 +540,7 @@
         </h2>
         <div style="background: rgba(255, 255, 255, 0.6); padding: 15px; border-radius: 15px; display: inline-block; min-width: 250px; margin-top: 10px; text-align: left;">
             <p style="color: #01579b; font-size: 1.1rem; margin: 5px 0;">
-                🏷️ <b>Bịt danh:</b> Dương Linh Trang :v
+                🏷️ <b>Bịt danh:</b> Dương Linh Trang
             </p>
             <p style="color: #01579b; font-size: 1.1rem; margin: 5px 0;">
                 📅 <b>Since:</b> 2018
@@ -563,7 +563,7 @@
     }
 </style>
 
-<button id="memoryButton" class="footer">Kẻm ơn vì đã đến :>></button>
+<button id="memoryButton" class="footer">Gâu Gâu</button>
                     </div>
                     <div id="memoriesContainer" class="memories-container">
                         <div class="memories-box"><input type="text" id="memoriesInput"
@@ -583,12 +583,12 @@
                                 </div>
                                 <canvas id="scratchCanvas"></canvas>
                             </div>
-                            <button id="loveButtonFinal" class="final-button" style="display: none;">Messages hidden in every falling photo >>></button>
+                            <button id="loveButtonFinal" class="final-button" style="display: none;">Next page >>></button>
                         </div>
                     </div>
                     <div id="loveContainer" class="love-container">
-                        <div class="love-message">Đôi lời :v</div>
-                        <div class="labels" style="margin-top: -10px; margin-bottom: 10px; font-weight: normal;">(Tap the text above to send a message.)</div>
+                        <div class="love-message">Nhấn vào đây để gửi lời nhắn.</div>
+                        <div class="labels" style="margin-top: -10px; margin-bottom: 10px; font-weight: normal;">(Nhấn vào ảnh để xem thông điệp.)</div>
                         <div class="love-heart">♥</div>
                     </div>
                     <audio id="backgroundMusic" autoplay loop>
@@ -1375,7 +1375,7 @@
             style="background:#ccc; color:#555; margin-top:5px;">Hủy bỏ</button>
     </div>
 
-    <div class="switch-container"><label class="switch"><input type="checkbox" id="modeCheckbox"
+    <div class="switch-container" style="display: none;"><label class="switch"><input type="checkbox" id="modeCheckbox"
                 onchange="toggleMode()"><span class="slider round"></span></label></div>
 
     <script>
@@ -1548,35 +1548,38 @@
                 ctx.beginPath(); ctx.arc(x, y, 30, 0, Math.PI * 2); ctx.fill();
             }
             const check = () => {
-    const d = ctx.getImageData(0, 0, cvs.width, cvs.height).data; 
-    let c = 0;
-    for (let i = 3; i < d.length; i += 4) {
-        if (d[i] === 0) c++; 
-    }
-    if (c / (cvs.width * cvs.height) > 0.4) {
-        const btn = document.getElementById('loveButtonFinal');
+                const d = ctx.getImageData(0, 0, cvs.width, cvs.height).data;
+                let c = 0;
+                for (let i = 3; i < d.length; i += 4) {
+                    if (d[i] === 0) c++;
+                }
 
-        if (btn.style.display === 'none') {
-            btn.style.display = 'inline-block';
-            btn.style.animation = "fadeIn 0.5s"; 
-        }
-    }
-}
+                if (c / (cvs.width * cvs.height) > 0.5) {
+                    const btn = document.getElementById('loveButtonFinal');
+                    if (btn.style.display === 'none') {
+                        btn.style.display = 'inline-block';
+                        btn.style.animation = "fadeIn 0.5s";
+                    }
+                    cvs.style.transition = 'opacity 1s'; // Mờ dần trong 1 giây cho đẹp
+                    cvs.style.opacity = '0';             // Ẩn hoàn toàn
+                    cvs.style.pointerEvents = 'none';    // Tắt chặn cảm ứng -> Kéo được chữ
+                }
+            }
             cvs.addEventListener('mousedown', () => drawing = true); cvs.addEventListener('mouseup', () => { drawing = false; check() }); cvs.addEventListener('mousemove', scratch);
             cvs.addEventListener('touchstart', (e) => { drawing = true; e.preventDefault() }); cvs.addEventListener('touchend', () => { drawing = false; check() }); cvs.addEventListener('touchmove', scratch);
         }
 
         function startRain() {
         const pics = [
-        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/avatar.jpg`, m: "'Mong rằng năm sau và nhiều năm sau nữa, bạn sẽ luôn yêu và được yêu, trái tim rộn ràng và đầy ấm áp!'" },
-        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/memory1.jpg`, m: "Cảm ơn quá khứ, hiện tại, tương lai" },
-        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/memory2.jpg`, m: "Mạnh mẽ lên nhé! Thăng trầm cũng chỉ là nốt nhạc mà thôi =)))" },
+        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/avatar.jpg`, m: "'Mong rằng năm sau và nhiều năm sau nữa, bạn sẽ luôn yêu và được yêu, trái tim rộn ràng và đầy ấm áp.'" },
+        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/memory1.jpg`, m: "Chỉ cần tâm hồn mình đầy nắng, thì dẫu bão giông cũng hóa dịu dàng. Cứ sống tử tế, trời xanh tự khắc an bài." },
+        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/memory2.jpg`, m: "Những vết xước trong tâm hồn rồi sẽ được chữa lành bằng niềm vui và sự tử tế. Stay strong!" },
         { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/memory3.jpg`, m: "Hãy ăn những món muốn ăn, đi đến những nơi muốn đi. Làm những chuyện khiến bản thân hạnh phúc" },
-        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/memory4.jpg`, m: "Có người đến, có người đi và có người ở lại..." },
+        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/memory4.jpg`, m: "Bầu trời có lúc mưa lúc nắng, cuộc đời có lúc trầm lúc thăng. Quan trọng là giữ tâm luôn bình yên." },
         { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/pic1.jpg`, m: "Hãy cứ yêu đời, yêu bản thân và luôn vui vẻ nhé. Sống lương thiện và tử tế. Love yourself first! " },
-        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/pic2.jpg`, m: "Đừng bận tâm việc ai ở lại hay ai rời đi. Người ở lại là tri kỉ, người rời đi là bài học" },
-        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/pic3.jpg`, m: "Hãy là phiên bản tốt nhất của chính mình nhé!" },
-        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/pic4.jpg`, m: "Never give up! Chúc em 1 đời an nhiên" }
+        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/pic2.jpg`, m: "Vạn sự chi bằng một bước lùi. Thế gian được mất tuỳ duyên." },
+        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/pic3.jpg`, m: "Sống đơn giản, bớt suy nghĩ, cười nhiều hơn và yêu đời hơn. Simple is the best." },
+        { s: `https://res.cloudinary.com/dkcgsjtls/image/upload/v100/${userId}/pic4.jpg`, m: "Cầu mong em một đời an nhiên, gặp nhiều may mắn và luôn được yêu thương trọn vẹn. Be happy, always." }
         ];
     
         setInterval(() => {
